@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+          {
+                  "src": "api/index.py",
+                  "use": "@vercel/python"
+          },
+          {
+                  "src": "public/**",
+                  "use": "@vercel/static"
+          }
+    ],
+    "routes": [
+          { "src": "/api/(.*)", "dest": "/api" },
+          { "src": "/(.*)", "dest": "/public/$1" }
+    ],
+    "headers": [
+          {
+                  "source": "/api/(.*)",
+                  "headers": [
+                            { "key": "Access-Control-Allow-Origin", "value": "*" }
+                  ]
+          }
+    ]
+}
